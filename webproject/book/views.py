@@ -3,7 +3,6 @@ from book.models import *
 from django.db.models import Q
 from book.form import *
 from django.http import HttpResponse
-from django.core.mail import EmailMessage
 
 ## 도서 검색하기(제목, 저자, ISBN 중 1개이상의 키워드를 이용하여)
 def search_books(request):
@@ -31,7 +30,6 @@ def search_books(request):
     return render(request, 'search_results.html', context)
 
 
-
 ## email이 있는지 체크
 def checkemail(email):
     try:
@@ -52,8 +50,9 @@ def mymileage(request):
                 mileage = member.mileage
                 return render(request, 'book/mymileage.html', {'mileage': mileage})
             else:
-                return render(request, 'book/mymileage.html', {'massage': "없는 이메일입니다."})
-
+                member = registeremail(email)
+                mileage = member.mileage
+                return render(request, '.html', {'mileage': mileage})
     else:
         form = Emailform()
     
@@ -62,51 +61,34 @@ def mymileage(request):
 
 
 ## 이메일 DB에 등록
-def registeremail(request):
-    if request.method == 'POST':
-        form = Emailform(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            member = checkemail(email)
-            if member:
-                return render(request, '.html', {'massage': "이미 가입한 이메일입니다."})
-            else:
-                member = Member
-                member.email = email
-                member.save()
-                return render(request, '.html', {'massage': "가입 되었습니다."})
-    else:
-        form = Emailform()
-    
-    context = {'form': form}
-    return render(request, '.html', context)
-
+def registeremail(email):
+    member = Member(email = email)
+    member.save()
+    return member
 
 
 
 def usemileage(request):
     if request.method == 'POST':
-        form = Orderform(request.POST)
+        form = Mileageform(request.POST)
         if form.is_valid():
-            isbn = form.cleaned_data('isbn')
             email = form.cleaned_data['email']
             mileage = form.cleaned_data['mileage']
             member = checkemail(email)
             if member:
-                if member.mileage < mileage:
-                    return render(request, '.html', {'massage': "마일리지가 부족합니다."})
                 member.mileage -= mileage
-                member.save()
-                return render(request, '.html', {'massage': mileage + " 마일리지를 사용해 신청하였습니다."})
+                return render(request, '.html', {'mileage': mileage})
             else:
-                return render(request, '.html', {'massage': "없는 이메일입니다."})
+                member = registeremail(email)
+                mileage = member.mileage
+                return render(request, '.html', {'mileage': mileage})
     else:
         form = Emailform()
     
     context = {'form': form}
     return render(request, '.html', context)
 
-#def sendemail(request):
+def sendemail(request):
 
 
 
