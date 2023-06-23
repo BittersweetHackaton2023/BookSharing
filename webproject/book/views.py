@@ -61,20 +61,22 @@ def mymileage(request):
 
 
 
-## 이메일 DB에 등록
+## 이메일 DB에 등록x
 def registeremail(request):
-    if request.method == 'POST':
-        form = Emailform(request.POST)
+    if request.method == 'GET':
+        form = Emailform(request.GET.get('email',None))
+        print(form) 
+        
         if form.is_valid():
             email = form.cleaned_data['email']
             member = checkemail(email)
             if member:
-                return render(request, '.html', {'massage': "이미 가입한 이메일입니다."})
+                return render(request, 'book/signup.html', {'massage': "이미 가입한 이메일입니다."})
             else:
                 member = Member
                 member.email = email
                 member.save()
-                return render(request, '.html', {'massage': "가입 되었습니다."})
+                return render(request, 'book/signup.html', {'massage': "가입 되었습니다."})
     else:
         form = Emailform()
     
