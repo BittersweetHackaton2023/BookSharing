@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Book
+from models.book_models import Book
 from django.db.models import Q
 
 def search_books(request):
