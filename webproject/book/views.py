@@ -31,7 +31,6 @@ def search_books(request):
     return render(request, 'search_results.html', context)
 
 
-
 ## email이 있는지 체크
 def checkemail(email):
     try:
@@ -87,7 +86,7 @@ def usemileage(request):
     if request.method == 'POST':
         form = Orderform(request.POST)
         if form.is_valid():
-            isbn = form.cleaned_data('isbn')
+            isbn = form.cleaned_data['isbn']
             email = form.cleaned_data['email']
             mileage = form.cleaned_data['mileage']
             member = checkemail(email)
@@ -96,6 +95,12 @@ def usemileage(request):
                     return render(request, '.html', {'massage': "마일리지가 부족합니다."})
                 member.mileage -= mileage
                 member.save()
+
+                order = Order
+                order.isbn = isbn
+                order.email = email
+                order.mileage = mileage
+                order.save()
                 return render(request, '.html', {'massage': mileage + " 마일리지를 사용해 신청하였습니다."})
             else:
                 return render(request, '.html', {'massage': "없는 이메일입니다."})
@@ -104,8 +109,6 @@ def usemileage(request):
     
     context = {'form': form}
     return render(request, '.html', context)
-
-def sendemail(request):
 
 
 
