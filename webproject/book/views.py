@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from models.book_models import Book
+from book.models import *
 from django.db.models import Q
 
 
@@ -30,7 +30,7 @@ def search_books(request):
 
 
 
-from models.member_models import *
+
 from book.form import *
 from django.http import HttpResponse
 

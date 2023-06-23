@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -16,7 +15,7 @@ class Member(models.Model):
 
 
 class Order(models.Model):
-    isbn = models.CharField()
+    isbn = models.CharField(max_length=13)
     email = models.EmailField(unique=True)
     mileage = models.PositiveIntegerField(default=0)
 
