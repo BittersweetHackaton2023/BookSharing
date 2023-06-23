@@ -79,7 +79,8 @@ def usemileage(request):
                 if member.mileage < mileage:
                     return render(request, '.html', {'massage': "마일리지가 부족합니다."})
                 member.mileage -= mileage
-                return render(request, '.html', {'mileage': mileage})
+                member.save()
+                return render(request, '.html', {'massage': mileage + " 마일리지를 사용해 신청하였습니다."})
             else:
                 return render(request, '.html', {'massage': "없는 이메일입니다."})
     else:
