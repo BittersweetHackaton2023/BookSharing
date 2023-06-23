@@ -21,4 +21,3 @@ class Orderform(ModelForm):
     class Meta:
         model = Order
         fields = ['isbn', 'email', 'mileage']
-

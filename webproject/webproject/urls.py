@@ -23,5 +23,6 @@ urlpatterns = [
     path('', index, name='index'),
     path('register/', register, name='register'),
     path('search/', search_books, name='search_books'),
-    path('signup/', signup, name = 'signup')
+    path('signup/', signup, name = 'signup'),
+    path('mymileage/', mymileage, name = 'mymileage'),
 ]

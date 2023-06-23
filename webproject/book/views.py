@@ -3,7 +3,6 @@ from book.models import *
 from django.db.models import Q
 from book.form import *
 from django.http import HttpResponse
-from django.core.mail import EmailMessage
 
 ## 도서 검색하기(제목, 저자, ISBN 중 1개이상의 키워드를 이용하여)
 def search_books(request):
@@ -49,14 +48,17 @@ def mymileage(request):
             member = checkemail(email)
             if member:
                 mileage = member.mileage
-                return render(request, '.html', {'mileage': mileage})
+                return render(request, 'book/mymileage.html', {'mileage': mileage})
             else:
-                return render(request, '.html', {'massage': "없는 이메일입니다."})
+                member = registeremail(email)
+                mileage = member.mileage
+                return render(request, '.html', {'mileage': mileage})
     else:
         form = Emailform()
     
     context = {'form': form}
-    return render(request, '.html', context)
+    return render(request, 'book/mymileage.html', context)
+
 
 
 ## 이메일 DB에 등록
@@ -81,9 +83,9 @@ def registeremail(request):
 
 
 
-
 def usemileage(request):
     if request.method == 'POST':
+        form = Mileageform(request.POST)
         form = Orderform(request.POST)
         if form.is_valid():
             isbn = form.cleaned_data['isbn']
@@ -106,10 +108,6 @@ def usemileage(request):
                 return render(request, '.html', {'massage': "없는 이메일입니다."})
     else:
         form = Emailform()
-    
-    context = {'form': form}
-    return render(request, '.html', context)
-
 
 
 def index(request):

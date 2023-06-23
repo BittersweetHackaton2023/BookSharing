@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>책 등록</title>
-  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
 </head>
 <body>
   <header class="Header">
@@ -13,12 +13,11 @@
       <ul>
         <li><a href="#" onclick="window.location.href='/register/'">나눔</a></li>
         <li><a href="#" onclick="window.location.href='/signup/'">등록</a></li>
-        <li><a>내 정보</a></li>
+        <li><a href="#" onclick="window.location.href='/mymileage/'">내 정보</a></li>
       </ul>
     </nav>
   </header>
 
-  <h1>책 등록</h1>
   <div class="register-form">
     <form action="{% url 'register' %}" method="post">
 
