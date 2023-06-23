@@ -103,3 +103,6 @@ def index(request):
 
 def register(request):
     return render(request, 'book/register.html')
+
+def signup(request):
+    return render(request, 'book/signup.html')
