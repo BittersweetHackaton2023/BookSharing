@@ -32,11 +32,6 @@ def search_books(request):
 
 
 
-
-from book.form import *
-from django.http import HttpResponse
-
-
 ## email이 있는지 체크
 def checkemail(email):
     try:
@@ -55,16 +50,16 @@ def mymileage(request):
             member = checkemail(email)
             if member:
                 mileage = member.mileage
-                return render(request, '.html', {'mileage': mileage})
+                return render(request, 'book/mymileage.html', {'mileage': mileage})
             else:
                 member = registeremail(email)
                 mileage = member.mileage
-                return render(request, '.html', {'mileage': mileage})
+                return render(request, 'book/mymileage.html', {'mileage': mileage})
     else:
         form = Emailform()
     
     context = {'form': form}
-    return render(request, '.html', context)
+    return render(request, 'book/mymileage.html', context)
 
 
 ## 이메일 DB에 등록
