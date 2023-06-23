@@ -4,50 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>중고 책 교환 사이트</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-  <header>
-    <h1>중고 책 교환 사이트</h1>
-    <!-- 로그인/회원가입 등의 링크 추가 가능 -->
-  </header>
-
-  <main>
-    <section id="book-list">
-      <h2>중고 책 목록</h2>
-      <!-- 중고 책 목록을 동적으로 표시하기 위한 영역 -->
+    <header class="Header">
+      <h1><a href=" ">HUFS Hackaton 2023</a></h1>
+      <nav>
+        <ul>
+          <li><a>About</a></li>
+          <li><a>Help</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <article class="art1">
+        <div class="logowrap">
+          <div id="logo" class="logo_default">
+            <div> 책 먹는 악어 </div>
+          </div>
+        </div>
+        {% include "book/searchbar.html" %}
+      </article>
     </section>
-
-    <section id="book-form">
-      <h2>중고 책 등록</h2>
-      <form id="add-book-form">
-        <label for="title">제목:</label>
-        <input type="text" id="title" name="title" required>
-
-        <label for="author">저자:</label>
-        <input type="text" id="author" name="author" required>
-
-        <label for="genre">장르:</label>
-        <input type="text" id="genre" name="genre" required>
-
-        <label for="condition">상태:</label>
-        <select id="condition" name="condition" required>
-          <option value="excellent">최상</option>
-          <option value="good">양호</option>
-          <option value="fair">보통</option>
-          <option value="poor">상태 나쁨</option>
-        </select>
-
-        <button type="submit">등록</button>
-      </form>
-    </section>
-  </main>
-
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
   <footer>
     <p>&copy; 2023 중고 책 교환 사이트. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
-</body>
 </html>

@@ -1,47 +1,77 @@
-css 코드
+@font-face {
+  font-family: "twayair";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
-/* 기본 스타일 */
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
   padding: 0;
 }
 
-header, main, footer {
-  padding: 20px;
-}
-
 header {
-  background-color: #333;
-  color: #fff;
+  height: 50px;
+  position: relative;
+  top: 0;
+  opacity: 0.8;
+  backdrop-filter: blur(30px);
+  background-color: blue;
+  padding-left: 32px;
+  padding-right: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
 }
 
-footer {
-  background-color: #f4f4f4;
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin-left: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+html {
+  height: 200%;
+  line-height: 1.6;
+  padding: 0px;
+  margin: 0;
+}
+body {
+  height: 100%;
+}
+section {
+  height: 100%;
+}
+article {
+  display: block;
+  height: 50%;
+  width: auto;
   text-align: center;
 }
-
-/* 폼 스타일 */
-form {
+article.art1 {
+  background-image: url("../image/bg1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.imagewrap {
   display: flex;
-  flex-direction: column;
-  max-width: 400px;
+  height: 100%;
+  width: 100%;
 }
-
-label, input, select {
-  margin-bottom: 10px;
+.imagewrap > span {
+  height: 100%;
+  width: auto;
+  flex: 1;
+  display: inline-block;
+  text-align: center;
+  font-size: 50px;
+  transition: all 1s;
 }
-
-button[type="submit"] {
-  padding: 10px 20px;
-}
-
-/* 중고 책 목록 스타일 */
-#book-list {
-  margin-top: 20px;
-}
-
-#book-list h2 {
-  margin-bottom: 10px;
-}
-
