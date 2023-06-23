@@ -17,13 +17,13 @@ header {
   top: 0;
   opacity: 0.8;
   backdrop-filter: blur(30px);
-  background-color: blue;
+  background-color: #07553B;
   padding-left: 32px;
   padding-right: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: black;
+  color: #CED46A;
 }
 
 ul {
@@ -38,8 +38,19 @@ li {
   font-weight: bold;
 }
 
+div{
+  height: auto;
+}
+#logo{
+  font-size: 40px;
+  font-weight: bold;
+  width: auto;
+  text-align: center;  
+  color: #CED46A;
+}
+
 html {
-  height: 200%;
+  height: 100%;
   line-height: 1.6;
   padding: 0px;
   margin: 0;
@@ -52,26 +63,10 @@ section {
 }
 article {
   display: block;
-  height: 50%;
+  height: 100%;
   width: auto;
   text-align: center;
-}
-article.art1 {
-  background-image: url("../image/bg1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-}
-.imagewrap {
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
-.imagewrap > span {
-  height: 100%;
-  width: auto;
-  flex: 1;
-  display: inline-block;
-  text-align: center;
-  font-size: 50px;
-  transition: all 1s;
+  background-color: #07553B;
 }
