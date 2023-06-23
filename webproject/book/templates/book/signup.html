@@ -24,7 +24,7 @@
     </header>
 
     <div class="register-form">
-      <form action="{% url 'signup' %}" method="GET">
+      <form action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required />
