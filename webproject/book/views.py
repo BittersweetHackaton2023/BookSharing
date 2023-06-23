@@ -52,9 +52,7 @@ def mymileage(request):
                 mileage = member.mileage
                 return render(request, 'book/mymileage.html', {'mileage': mileage})
             else:
-                member = registeremail(email)
-                mileage = member.mileage
-                return render(request, '.html', {'mileage': mileage})
+                return render(request, 'book/mymileage.html', {'massage': "메일이 존재하지 않습니다."})
     else:
         form = Emailform()
     
@@ -114,23 +112,6 @@ def usemileage(request):
     
     context = {'form': form}
     return render(request, 'mileage_usage.html', context)
-            member = checkemail(email)
-            if member:
-                if member.mileage < mileage:
-                    return render(request, '.html', {'massage': "마일리지가 부족합니다."})
-                member.mileage -= mileage
-                member.save()
-
-                order = Order
-                order.isbn = isbn
-                order.email = email
-                order.mileage = mileage
-                order.save()
-                return render(request, '.html', {'massage': mileage + " 마일리지를 사용해 신청하였습니다."})
-            else:
-                return render(request, '.html', {'massage': "없는 이메일입니다."})
-    else:
-        form = Emailform()
 
 
 def index(request):
