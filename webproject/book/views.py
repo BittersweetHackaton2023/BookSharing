@@ -103,7 +103,7 @@ def usemileage(request):
     else:
         form = Emailform()
 
-def sendemail(request):
+#def sendemail(request):
 
 
 

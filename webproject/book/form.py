@@ -1,18 +1,23 @@
-from django.db import models
-class Book(models.Model):
-    title = models.CharField(max_length=100)
-    author = models.CharField(max_length=100)
-    isbn = models.CharField(max_length=13)
-    email = models.EmailField(unique=True)
+from book.models import *
+from django.forms import ModelForm
 
-    def __str__(self):
-        return self.title
 
-class Member(models.Model):
-    email = models.EmailField(unique=True)
-    mileage = models.IntegerField(default=100)
-class Order(models.Model):
-    isbn = models.CharField(max_length=13)
-    email = models.EmailField(unique=True)
-    mileage = models.PositiveIntegerField(default=0)
+class Emailform(ModelForm):
+    class Meta:
+        model = Member
+        fields = ['email']
 
+class Mileageform(ModelForm):
+    class Meta:
+        model = Member
+        fields = ['email', 'mileage']
+
+class BookForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'isbn', 'email']
+
+class Orderform(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['isbn', 'email', 'mileage']
