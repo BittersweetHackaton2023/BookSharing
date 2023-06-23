@@ -21,5 +21,5 @@ from book.views.member_views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('book/', include('book.urls')),
+    path('', index, name='index'),
 ]
