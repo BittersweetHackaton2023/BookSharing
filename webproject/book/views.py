@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from datetime import datetime, timedelta
 from django.core.exceptions import ObjectDoesNotExist
 
+
 ## 도서 검색하기(제목, 저자, ISBN 중 1개이상의 키워드를 이용하여)
 def search_books(request):
     query = request.GET.get('query')  # 검색어를 GET 파라미터로 받아옴
@@ -64,24 +65,22 @@ def mymileage(request):
 ## 이메일 DB에 등록x
 def registeremail(request):
     if request.method == 'GET':
-        form = Emailform(request.GET.get('email',None))
-        print(form) 
-        
+        form = Emailform(request.GET)
         if form.is_valid():
             email = form.cleaned_data['email']
             member = checkemail(email)
             if member:
-                return render(request, 'book/signup.html', {'massage': "이미 가입한 이메일입니다."})
+                return render(request, 'book/signup.html', {'message': "이미 가입한 이메일입니다.", 'message_type': 'error'})
             else:
-                member = Member
-                member.email = email
+                member = Member(email=email)
                 member.save()
-                return render(request, 'book/signup.html', {'massage': "가입 되었습니다."})
+                return render(request, 'book/signup.html', {'message': "가입 되었습니다.", 'message_type': 'success'})
     else:
         form = Emailform()
     
     context = {'form': form}
-    return render(request, '.html', context)
+    return render(request, 'book/signup.html', context)
+
 
 
 ##경매 신청(신청자들의 정보(마일리지 기준)를 내림차순으로 저장)
