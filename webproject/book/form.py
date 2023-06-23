@@ -1,4 +1,4 @@
-from models.member_models import *
+from book.models import *
 from django.forms import ModelForm
 
 class Emailform(ModelForm):
