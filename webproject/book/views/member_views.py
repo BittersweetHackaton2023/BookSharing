@@ -38,3 +38,25 @@ def registeremail(email):
     member = Member(email = email)
     member.save()
     return member
+
+
+
+def usemileage(request):
+    if request.method == 'POST':
+        form = Mileageform(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            mileage = form.cleaned_data['mileage']
+            member = checkemail(email)
+            if member:
+                member.mileage -= mileage
+                return render(request, '.html', {'mileage': mileage})
+            else:
+                member = registeremail(email)
+                mileage = member.mileage
+                return render(request, '.html', {'mileage': mileage})
+    else:
+        form = Emailform()
+    
+    context = {'form': form}
+    return render(request, '.html', context)
