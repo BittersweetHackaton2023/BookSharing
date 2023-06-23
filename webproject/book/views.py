@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from book.models import *
 from django.db.models import Q
-from book.models import *
 from book.form import *
 from django.http import HttpResponse
 

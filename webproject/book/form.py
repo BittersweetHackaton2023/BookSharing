@@ -1,6 +1,5 @@
 from book.models import *
 from django.forms import ModelForm
-from models.book_models import Book
 
 
 class Emailform(ModelForm):
