@@ -1,18 +1,21 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <title>Email Registration</title>
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 </head>
 <body>
-    <div class="Header">
-        <h1><a href="#">Email Registration</a></h1>
+    <header class="Header">
+        <h1><a href="{% url 'index' %}">BitterSweet</a></h1>
         <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-            </ul>
+          <ul>
+            <li><a href="#" onclick="window.location.href='/register/'">나눔</a></li>
+            <li><a href="#" onclick="window.location.href='/signup/'">등록</a></li>
+            <li><a>내 정보</a></li>
+          </ul>
         </nav>
-    </div>
+    </header>
 
     <div class="register-form">
         <form action="/register" method="post">
