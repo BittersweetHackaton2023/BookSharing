@@ -17,3 +17,8 @@ class BookForm(ModelForm):
     class Meta:
         model = Book
         fields = ['title', 'author', 'isbn', 'email']
+
+class Orderform(ModelForm):
+    class Meta:
+        model = Order
+        field = ['isbn', 'email', 'mileage']
