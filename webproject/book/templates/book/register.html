@@ -1,26 +1,39 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <meta charset="UTF-8">
   <title>책 등록</title>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 <body>
+  <header class="Header">
+    <h1><a href="{% url 'index' %}">BitterSweet</a></h1>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="window.location.href='/register/'">나눔</a></li>
+        <li><a>내 정보</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <h1>책 등록</h1>
-  <form action="{% url 'register' %}" method="post">
+  <div class="register-form">
+    <form action="{% url 'register' %}" method="post">
 
-    <label for="book_name">책 이름:</label>
-    <input type="text" id="book_name" name="book_name" required><br>
+      <label for="book_name">책 이름:</label>
+      <input type="text" id="book_name" name="book_name" required>
 
-    <label for="author">책 저자:</label>
-    <input type="text" id="author" name="author" required><br>
+      <label for="author">책 저자:</label>
+      <input type="text" id="author" name="author" required>
 
-    <label for="isbn">ISBN:</label>
-    <input type="text" id="isbn" name="isbn" required><br>
+      <label for="isbn">ISBN:</label>
+      <input type="text" id="isbn" name="isbn" required>
 
-    <label for="email">이메일:</label>
-    <input type="email" id="email" name="email" required><br>
+      <label for="email">이메일:</label>
+      <input type="email" id="email" name="email" required>
 
-    <input type="submit" value="등록">
-  </form>
+      <input type="submit" value="등록">
+    </form>
+  </div>
 </body>
-</html>

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from models.book_models import Book
 from django.db.models import Q
 
+
+## 도서 검색하기(제목, 저자, ISBN 중 1개이상의 키워드를 이용하여)
 def search_books(request):
     query = request.GET.get('query')  # 검색어를 GET 파라미터로 받아옴
 

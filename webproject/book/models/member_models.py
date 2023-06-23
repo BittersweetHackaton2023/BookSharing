@@ -12,3 +12,4 @@ class Order(models.Model):
     isbn = models.CharField()
     email = models.EmailField(unique=True)
     mileage = models.PositiveIntegerField(default=0)
+
