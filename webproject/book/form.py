@@ -10,3 +10,9 @@ class Mileageform(ModelForm):
     class Meta:
         model = Member
         field = ['email', 'mileage']
+
+
+class Orderform(ModelForm):
+    class Meta:
+        model = Order
+        field = ['isbn', 'email', 'mileage']
