@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from book.views import *
+from book import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +25,5 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('search/', search_books, name='search_books'),
     path('signup/', signup, name = 'signup'),
-    path('mymileage/', mymileage, name = 'mymileage'),
+    path('mymileage/', views.mymileage, name = 'mymileage'),
 ]

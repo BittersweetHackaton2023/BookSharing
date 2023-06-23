@@ -40,8 +40,7 @@ def checkemail(email):
     except Member.DoesNotExist:
         return None
 
-
-## email의 마일리지 확인
+##내 이메일 정보를 기반으로 마일리지 출력
 def mymileage(request):
     if request.method == 'POST':
         form = Emailform(request.POST)
@@ -52,12 +51,13 @@ def mymileage(request):
                 mileage = member.mileage
                 return render(request, 'book/mymileage.html', {'mileage': mileage})
             else:
-                return render(request, 'book/mymileage.html', {'massage': "메일이 존재하지 않습니다."})
+                return render(request, 'book/mymileage.html', {'message': "메일이 존재하지 않습니다."})  # 변수명을 'message'로 수정
     else:
         form = Emailform()
     
     context = {'form': form}
     return render(request, 'book/mymileage.html', context)
+
 
 
 
