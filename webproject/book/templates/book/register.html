@@ -3,24 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <title>책 등록</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #CED46A;;
+      margin: 0;
+      padding: 0;
+    }
+
+    .Header {
+      background-color: #07553B; 
+      color: #fff;
+      padding: 20px;
+    }
+
+    .Header h1 a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .Header nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .Header nav ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .Header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .register-form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .register-form input[type="text"],
+    .register-form input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    .register-form input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .register-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
+  <header class="Header">
+    <h1><a href="#"  onclick="location.href='http://127.0.0.1:8000/'">BitterSweet</a></h1>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="window.location.href='/register/'">등록</a></li>
+        <li><a>내 정보</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <h1>책 등록</h1>
-  <form action="{% url 'register' %}" method="post">
+  <div class="register-form">
+    <form action="{% url 'register' %}" method="post">
 
-    <label for="book_name">책 이름:</label>
-    <input type="text" id="book_name" name="book_name" required><br>
+      <label for="book_name">책 이름:</label>
+      <input type="text" id="book_name" name="book_name" required>
 
-    <label for="author">책 저자:</label>
-    <input type="text" id="author" name="author" required><br>
+      <label for="author">책 저자:</label>
+      <input type="text" id="author" name="author" required>
 
-    <label for="isbn">ISBN:</label>
-    <input type="text" id="isbn" name="isbn" required><br>
+      <label for="isbn">ISBN:</label>
+      <input type="text" id="isbn" name="isbn" required>
 
-    <label for="email">이메일:</label>
-    <input type="email" id="email" name="email" required><br>
+      <label for="email">이메일:</label>
+      <input type="email" id="email" name="email" required>
 
-    <input type="submit" value="등록">
-  </form>
+      <input type="submit" value="등록">
+    </form>
+  </div>
 </body>
-</html>
