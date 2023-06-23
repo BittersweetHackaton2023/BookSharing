@@ -8,10 +8,10 @@
 </head>
 <body>
     <header class="Header">
-      <h1><a href=" ">HUFS Hackaton 2023</a></h1>
+      <h1><a href=" ">BOOK FISH</a></h1>
       <nav>
         <ul>
-          <li><a>About</a></li>
+          <li><a>등록</a></li>
           <li><a>Help</a></li>
         </ul>
       </nav>
@@ -20,17 +20,20 @@
       <article class="art1">
         <div class="logowrap">
           <div id="logo" class="logo_default">
-            <div> 책 먹는 악어 </div>
+            <div> 책 먹는 </div>
+            <div> 물고기 </div>
+            {% include "book/searchbar.html" %}
+          </div>
+          <div>
+            <div>
           </div>
         </div>
-        {% include "book/searchbar.html" %}
+        
       </article>
     </section>
     <script src="{% static 'js/script.js' %}"></script>
   </body>
   <footer>
-    <p>&copy; 2023 중고 책 교환 사이트. All rights reserved.</p>
+    <p>&copy; 2023 HUFS HACKATON. All rights reserved.</p>
   </footer>
-
-  <script src="script.js"></script>
 </html>
