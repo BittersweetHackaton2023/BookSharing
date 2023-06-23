@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from book.models import *
-from django.db.models import Q
+from django.db.models import Q, Count
 from book.form import *
 from django.http import HttpResponse
 from datetime import datetime, timedelta
@@ -150,3 +150,16 @@ def register_auction(request):
     return render(request, 'register_auction.html', context)
 
 
+##경매에 등록된 도서별 개수 현황
+def get_book_counts():
+    book_counts = Book.objects.values('title').annotate(count=Count('title'))
+    return book_counts
+'''
+사용예시
+book_counts = get_book_counts()
+for book in book_counts:
+    title = book['title']
+    count = book['count']
+    print(f"{title}: {count}")
+
+'''
