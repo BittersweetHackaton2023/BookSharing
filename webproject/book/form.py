@@ -5,3 +5,8 @@ class Emailform(ModelForm):
     class Meta:
         model = Member
         field = ['email']
+
+class Mileageform(ModelForm):
+    class Meta:
+        model = Member
+        field = ['email', 'mileage']
