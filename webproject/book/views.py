@@ -129,16 +129,28 @@ def register_auction(request):
     if request.method == 'POST':
         form = BookForm(request.POST)
         if form.is_valid():
-            # 경매 등록 시간
-            auction_start_time = datetime.now()
-            # 경매 종료 시간
-            auction_end_time = auction_start_time + timedelta(hours=24)
+            email = form.cleaned_data['email']
+            book_title = form.cleaned_data['title']
+            
+            # 동일한 도서가 이미 등록되어 있는지 확인
+            if Book.objects.filter(title=book_title).exists():
+                # 이미 등록된 도서인 경우
+                book = Book.objects.get(title=book_title)
+            else:
+                # 도서 등록 시간
+                auction_start_time = datetime.now()
+                # 경매 종료 시간
+                auction_end_time = auction_start_time + timedelta(hours=24)
+                
+                # 새로운 도서 등록
+                book = form.save(commit=False)
+                book.auction_start_time = auction_start_time
+                book.auction_end_time = auction_end_time
+                book.save()
 
-            # 폼 데이터 저장
-            book = form.save(commit=False)
-            book.auction_start_time = auction_start_time
-            book.auction_end_time = auction_end_time
-            book.save()
+            # 등록자 정보 저장
+            participant = AuctionParticipant(user=request.user, email=email, mileage=0, auction_time=datetime.now())
+            participant.save()
 
             return redirect('auction_list')
     else:
@@ -146,6 +158,7 @@ def register_auction(request):
 
     context = {'form': form}
     return render(request, 'register_auction.html', context)
+
 
 
 ##경매에 등록된 도서별 개수 현황
