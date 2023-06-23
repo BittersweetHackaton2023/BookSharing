@@ -39,11 +39,11 @@ def registeremail(request):
             email = form.cleaned_data['email']
             member = checkemail(email)
             if member:
-                return render(request, '.html', {'message': '이미 가입된 메일입니다.'})
+                return render(request, 'signup.html', {'message': '이미 가입된 메일입니다.'})
             else:
                 member = Member(email = email)
                 member.save()
-                return render(request, '.html', {'message': '가입 되었습니다.'})
+                return render(request, 'signup.html', {'message': '가입 되었습니다.'})
     else:
         form = Emailform()
     
@@ -61,8 +61,8 @@ def usemileage(request):
             mileage = form.cleaned_data['mileage']
             member = checkemail(email)
             if member:
-                if member.mileage == 0:
-                    return render(request, '.html', {'mileage': mileage})
+                if member.mileage < mileage:
+                    return render(request, '.html', {'message': '마일리지가 부족합니다.'})
                 member.mileage -= mileage
                 return render(request, '.html', {'mileage': mileage})
             else:
