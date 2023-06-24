@@ -26,4 +26,5 @@ urlpatterns = [
     path('search/', search_books, name='search_books'),
     path('signup/', signup, name = 'signup'),
     path('mymileage/', views.mymileage, name = 'mymileage'),
+    path('ajax_suggestion/', ajax_suggestion, name='ajax_suggestion'),
 ]
