@@ -1,7 +1,7 @@
 아!달콤쌉싸름한해커톤의추억이여!
 https://github.com/BittersweetHackaton2023/HackatonHufs2023
 
-
+# python manage.py runserver 해서 실행해야됩니다
 
 # views.py
 search_book : 입력받은 책을 DB에서 찾아 책에 관한 정보를 반환함.
