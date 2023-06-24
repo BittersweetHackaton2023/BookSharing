@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-<head>
+  <head>
     <title>Email Registration</title>
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+  </head>
+  <body>
     <header class="Header">
-        <h1><a href="{% url 'index' %}">BitterSweet</a></h1>
-        <nav>
-          <ul>
-            <li><a href="#" onclick="window.location.href='/register/'">나눔</a></li>
-            <li><a href="#" onclick="window.location.href='/signup/'">등록</a></li>
-            <li><a href="#" onclick="window.location.href='/mymileage/'">내 정보</a></li>
-          </ul>
-        </nav>
+      <h1><a href="{% url 'index' %}">BitterSweet</a></h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="#" onclick="window.location.href='/register/'">나눔</a>
+          </li>
+          <li>
+            <a href="#" onclick="window.location.href='/signup/'">등록</a>
+          </li>
+          <li>
+            <a href="#" onclick="window.location.href='/mymileage/'">내 정보</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <div class="register-form">
-        <form action="/signup/" method="GET">
-            {% csrf_token %}
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <input type="submit" value="Signup">
-        </form>
+      <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <input type="submit" value="Signup" />
+      </form>
 
-        {% if message %}
-            {% if message_type == "success" %}
-                <p class="success">{{ message }}</p>
-                {% else %}
-                    <p class="error">{{ message }}</p>
-                {% endif %}
-            {% endif %}
-        </div>
+      {% if message %} {% if message_type == "success" %}
+      <p class="success">{{ message }}</p>
+      {% else %}
+      <p class="error">{{ message }}</p>
+      {% endif %} {% endif %}
+    </div>
+  </body>
+</html>

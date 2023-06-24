@@ -34,6 +34,7 @@ def ajax_suggestion(request):
         return HttpResponse(result)
 
 
+
 ## 도서 검색하기(제목, 저자, ISBN 중 1개이상의 키워드를 이용하여)
 def search_books(request):
     query = request.GET.get('query')  # 검색어를 GET 파라미터로 받아옴
@@ -68,7 +69,8 @@ def checkemail(email):
     except Member.DoesNotExist:
         return None
 
-##내 이메일 정보를 기반으로 마일리지 출력
+
+## email의 마일리지 확인
 def mymileage(request):
     if request.method == 'POST':
         form = Emailform(request.POST)
@@ -89,27 +91,22 @@ def mymileage(request):
 
 
 
-## 이메일 DB에 등록x
 def registeremail(request):
-    if request.method == 'GET':
-        form = Emailform(request.GET.get('email',None))
-        print(form) 
-        
+    if request.method == 'POST':
+        form = Emailform(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
-            member = checkemail(email)
-            if member:
-                return render(request, 'book/signup.html', {'massage': "이미 가입한 이메일입니다."})
-            else:
-                member = Member
-                member.email = email
-                member.save()
-                return render(request, 'book/signup.html', {'massage': "가입 되었습니다."})
+            member = Member()
+            member.email = email
+            member.save()
+            return render(request, 'book/signup.html', {'message': '가입되었습니다.'})
+        else:
+            return render(request, 'book/signup.html', {'message': '이미 등록된 이메일입니다.'})
     else:
         form = Emailform()
-    
+
     context = {'form': form}
-    return render(request, '.html', context)
+    return render(request, 'book/signup.html', context)
 
 
 ##경매 신청(신청자들의 정보(마일리지 기준)를 내림차순으로 저장)
