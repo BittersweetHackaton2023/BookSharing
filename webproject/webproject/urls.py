@@ -24,12 +24,8 @@ urlpatterns = [
     path('', index, name='index'),
     path('register/', register, name='register'),
     path('search/', search_books, name='search_books'),
-<<<<<<< HEAD
     path('signup/', signup, name = 'signup'),
-    path('mymileage/', views.mymileage, name = 'mymileage'),
-    path('ajax_suggestion/', ajax_suggestion, name='ajax_suggestion'),
-=======
     path('signup/', views.registeremail, name = 'signup'),
     path('mymileage/', views.mymileage, name = 'mymileage'),
->>>>>>> a59976922c659b5c570b590b0e29fb0cda05677c
+    path('ajax_suggestion/', ajax_suggestion, name='ajax_suggestion'),
 ]
