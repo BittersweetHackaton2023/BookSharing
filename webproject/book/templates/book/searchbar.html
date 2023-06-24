@@ -1,118 +1,29 @@
-<!DOCTYPE html>
-<html>
-<style>
-  .search {
-    margin: 0 auto;
-    position: relative;
-    width: 80%;
-    height: 8vh;
-  }
-  .txt {
-    float: left;
-    width: 38vw;
-    height: 5vh;
-    margin-left: 20vw;
-    border-radius: 20px;
-    font-size: 2vh;
-  }
-  .searchImage {
-    float: left;
-    margin: 0;
-    width: 5vmin;
-    cursor: pointer;
-    border-radius: 0;
-  }
-  .search_wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+<html lang="kr">
 
-#name {
-    width: 200px;
-    height: 20px;
-}  
-
-.invisible{
-    display: none;
-}
-
-
-#suggestion_box {
-    margin-top: 1px;
-    background: white;
-    padding: 0 10px;
-    border: 1px solid black;
-}
-
-#suggested_items{
-    height:100px;
-    width: 250px;
-    overflow: auto; /* 스크롤바 추가 */
-}
-
-/* 마우스 올리면 색 변화 */
-.item:hover{
-    color: #fff;
-    background-color: lightgreen;
-}
-</style>
-
-  <head>
+<head>
   <meta charset="UTF-8">
-  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <title>Ajax Suggestion</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script>
-      // DOM
-  $(function() {
-    $("#name").keyup(function() {
-
-      const recommendBox = document.querySelector("#suggestion_box");
-    
-      // invisible을 지워준다.
-      recommendBox.classList.remove('invisible');
-      const input_name = document.getElementById("#name");
-    
-      // 기존 검색 추천 데이터 지우고, 새로 넣어주기 안 그러면 계속 추가됨
-      recommendBox.innerHTML = "";
-
-      const suggestedItems = document.createElement('div')
-      suggestedItems.id = "suggested_items"
-
-      recommendBox.appendChild(suggestedItems);
-
-      // item별 리스트
-      var items = ['강백호', '박해민', '이정후', '원태인', '구자욱', '오승환'];
-    
-      // for문 돌면서 item 추가
-      for (var i in items) {
-
-        var player_content = document.createTextNode(items[i]);
-        var suggestedItem = document.createElement('div')
-        suggestedItem.className = "item"
-
-        suggestedItem.addEventListener('click', function(e){
-          document.getElementById("name").value = this.textContent.split(' ')[0];
-        });
-
-        suggestedItem.appendChild(player_content);
-        suggestedItems.appendChild(suggestedItem);
-      }
-    })
-  })
+      $(function() {
+          $("#search_box").keyup(function() {
+              $.ajax({
+                  url: "/ajax_suggestion/",
+                  data: { keyword: $(this).val() },
+                  method: "GET"
+              })
+              .done(function(result) {
+                  $("#suggestion_box").html(result);
+              })
+          })
+      });
   </script>
-  </head>
+</head>
 
-  <body>
-    <div class = "search_wrapper">
-      <div class = "mid_wrapper">
-        <input type="text" id = "query" autocomplete="off">
-        <input type="button" id = "submit_button" value="검색"> 
-      </div>
-      <div id="suggestion_box" class = "invisible">
-        <div id = suggested_items></div>
-      </div>
-    </div>
-  </body>
-
-</html>
+<body> 
+  <h1>검색어 추천 기능</h1>
+  <form>
+      <input id="search_box" type="text" name="book" size="20">
+      <div id="suggestion_box"></div>
+  </form>
+</body>

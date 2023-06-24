@@ -1,3 +1,5 @@
+import os
+from xml.dom import minidom
 from django.shortcuts import render, redirect
 from book.models import *
 from django.db.models import Q, Count
@@ -5,6 +7,32 @@ from book.form import *
 from django.http import HttpResponse
 from datetime import datetime, timedelta
 from django.core.exceptions import ObjectDoesNotExist
+from urllib.parse import quote
+
+def ajax_suggestion(request):
+    if request.method == 'GET':
+        keyword = request.GET.get('keyword','')
+    
+        
+        # XML 파일 경로
+        xml_path = os.path.join(os.path.dirname(__file__), 'book_names.xml')
+        
+        # XML 파일 로드
+        xmlData = minidom.parse(xml_path)
+        
+        # XML 문서에서 "name" 태그를 선택
+        names = xmlData.getElementsByTagName("name")
+        
+        result = ""
+        
+        for name in names:
+            name_value = name.firstChild.nodeValue
+            
+            if keyword and name_value.lower().startswith(keyword.lower()):
+                result += name_value + "<br>"
+        
+        return HttpResponse(result)
+
 
 ## 도서 검색하기(제목, 저자, ISBN 중 1개이상의 키워드를 이용하여)
 def search_books(request):
